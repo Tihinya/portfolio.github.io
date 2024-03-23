@@ -1,11 +1,10 @@
 
 import path from 'path';
 import webpack from 'webpack';
-// in case you run into any typescript error when configuring `devServer`
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-module.exports = (env) => {
-    return {
+export default (env: any) => {
+    const config: webpack.Configuration = {
         mode: env.mode ?? 'development',
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         output: {
@@ -29,8 +28,12 @@ module.exports = (env) => {
                     use: ["style-loader", "css-loader"],
                 },
                 {
-                    test: /\\.(png|jp(e*)g|svg|gif)$/,
-                    use: ['file-loader'],
+                    test: /\.(png|jpe?g|gif)$/i,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                        },
+                    ],
                 },
             ],
         },
@@ -38,4 +41,5 @@ module.exports = (env) => {
             extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
     }
+    return config
 };
