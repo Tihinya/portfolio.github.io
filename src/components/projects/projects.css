@@ -1,0 +1,128 @@
+.project__filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-bottom: var(--mb-2);
+}
+
+.project__item {
+    color: var(--title-color);
+    padding: 0.25rem 0.75rem;
+
+    font-weight: var(--font-medium);
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+}
+
+.project__item:hover {
+    background-color: var(--title-color);
+    color: var(--container-color);
+}
+
+.project__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+}
+
+.project__description {
+    min-width: 280px;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.project__card {
+    background-color: var(--container-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    margin-bottom: var(--mb-1-5);
+    grid-template-columns: 1fr 2fr;
+    min-width: fit-content;
+    max-width: var(--mb-3-5);
+}
+
+.project__img {
+    min-width: 595px;
+    border-radius: 1rem;
+    margin-bottom: var(--mb-1);
+}
+
+.project__title {
+    padding-left: var(--mb-1);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-0-5);
+}
+
+.project__button {
+    color: var(--text-color);
+    font-size: var(--small-font-size);
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding-left: var(--mb-1);
+}
+
+.project__button-icon {
+    font-size: 1rem;
+    transition: 0.4s;
+}
+
+.project__button:hover .project__button-icon {
+    transform: translateX(0.25rem);
+}
+
+.active__project {
+    background-color: var(--title-color);
+    color: var(--container-color);
+}
+
+@media screen and (max-width: 992px) {
+
+    .project__container {
+        gap: 1.25rem;
+    }
+
+    .project__card {
+        padding: 1rem;
+        grid-template-columns: none;
+    }
+
+    .project__img {
+        margin-bottom: 0.75rem;
+    }
+
+    .project__title {
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .project__container {
+        grid-template-columns: max-content;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .project__container {
+        grid-template-columns: 1fr;
+    }
+
+    .project__img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .project__item {
+        font-size: var(--small-font-size);
+    }
+
+    .project__filters {
+        column-gap: 0.25rem;
+    }
+}
