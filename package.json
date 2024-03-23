@@ -20,8 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:dev": "webpack --env mode=development",
-    "build:prod": "webpack --env mode=production"
+    "build": "webpack"
   },
   "eslintConfig": {
     "extends": [
