@@ -1,6 +1,9 @@
 import React from "react"
 import "./home.css"
 import { FiGithub, FiLinkedin } from "react-icons/fi"
+import ownerPicture from "../../assets/profileBW.jpeg"
+
+
 export default function Home() {
     return (
         <section
@@ -22,7 +25,7 @@ export default function Home() {
                             <FiLinkedin />
                         </a>
                     </div>
-                    <div className="home__img" />
+                    <div className="home__img"  style={{ backgroundImage: `url(${ownerPicture})` }}/>
                     <div className="home__data">
                         <h1 className="home__title">Stepan Tikhinya</h1>
                         <h3 className="home__subtitle">

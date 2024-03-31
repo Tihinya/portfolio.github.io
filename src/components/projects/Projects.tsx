@@ -1,5 +1,5 @@
 import React from "react"
-
+import "./projects.css"
 import { HiOutlineArrowSmRight } from "react-icons/hi"
 import mainImage from "../../assets/main.jpeg"
 
@@ -7,7 +7,11 @@ import mainImage from "../../assets/main.jpeg"
 
 export default function Projects() {
     return (
-        <div>
+        <section
+        className="portfolio section"
+        id="portfolio">
+        <h2 className="section__title">Portfolio</h2>
+        <span className="section__subtitle">Recent Projects</span>
             <div className="project__container container">
                 <div className="project__card grid">
                     <div>
@@ -15,7 +19,7 @@ export default function Projects() {
                             className="project__img"
                             src={mainImage}
                         />
-                        <h3 className="project__title">Title</h3>
+                        <h3 className="project__title">Forum</h3>
                         <a className="project__button" href="https://ec2-51-20-1-125.eu-north-1.compute.amazonaws.com:3000/">
                             Demo
                             <HiOutlineArrowSmRight className="project__button-icon" />
@@ -33,6 +37,6 @@ export default function Projects() {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

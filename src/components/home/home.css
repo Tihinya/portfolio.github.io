@@ -59,7 +59,6 @@
 }
 
 .home__img {
-    background: url(../../../public/profileBW.jpeg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

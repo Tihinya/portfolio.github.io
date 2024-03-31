@@ -1,38 +1,52 @@
-import React, { useRef } from "react"
-import "./contact.css"
-import { HiOutlineMail, HiOutlineArrowSmRight } from "react-icons/hi"
-import emailjs, { EmailJSResponseStatus } from "emailjs-com"
+import React, { useState } from "react";
+import "./contact.css";
+import { HiOutlineMail, HiOutlineArrowSmRight } from "react-icons/hi";
+import emailjs, { EmailJSResponseStatus } from "emailjs-com";
 
 export default function Contact() {
-    const form = useRef<HTMLFormElement | null>(null)
+    const [formData, setFormData] = useState({
+        from_name: "",
+        email_id: "",
+        message: ""
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
     const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        if (form.current) {
-            const result: EmailJSResponseStatus = await emailjs.sendForm(
-                "service_s53x8mc",
-                "template_fwq8n7v",
-                form.current,
-                "cXginQ40keRVEt1YV"
-            )
+        try {
+            const result: EmailJSResponseStatus = await emailjs.send(
+                "service_clhj798",
+                "template_anvipxv",
+                formData,
+                "Sv2HwmG88UMm1gMRR"
+            );
 
             if (result.text === "OK") {
-                // Email sent successfully, you can add your success handling logic here
-                console.log("Email sent successfully")
+                console.log("Email sent successfully");
+                setFormData({ from_name: "", email_id: "", message: "" });
             } else {
-                // Handle the error case here
-                console.error("Error sending email")
+                console.error("Email not sent:", result);
+                // Provide user feedback about the failure
             }
-
-            form.current.reset()
+        } catch (error) {
+            console.error("Error sending email:", error);
+            // Provide user feedback about the error
         }
-    }
+    };
+
+
+
 
     return (
-        <section
-            className="contact section"
-            id="contact">
+        <section className="contact section" id="contact">
             <h2 className="section__title">Let's Connect</h2>
             <span className="section__subtitle">Contact Me</span>
 
@@ -51,7 +65,8 @@ export default function Contact() {
 
                             <a
                                 href="mailto:tikhinya.stepan@gmail.com"
-                                className="contact__button">
+                                className="contact__button"
+                            >
                                 Write Me{" "}
                                 <HiOutlineArrowSmRight className="contact__button-icon" />
                             </a>
@@ -62,15 +77,14 @@ export default function Contact() {
                 <div className="contact__content">
                     <h3 className="contact__title">What's the project?</h3>
 
-                    <form
-                        ref={form}
-                        onSubmit={sendEmail}
-                        className="contact__form">
+                    <form onSubmit={sendEmail} className="contact__form">
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Name</label>
                             <input
                                 type="text"
-                                name="name"
+                                name="from_name"
+                                value={formData.from_name}
+                                onChange={handleChange}
                                 className="contact__form-input"
                                 placeholder="Type your name"
                             />
@@ -80,7 +94,9 @@ export default function Contact() {
                             <label className="contact__form-tag">Email</label>
                             <input
                                 type="email"
-                                name="email"
+                                name="email_id"
+                                value={formData.email_id}
+                                onChange={handleChange}
                                 className="contact__form-input"
                                 placeholder="Type your email"
                             />
@@ -89,22 +105,25 @@ export default function Contact() {
                         <div className="contact__form-div contact__form-area">
                             <label className="contact__form-tag">Project</label>
                             <textarea
-                                name="project"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 cols={30}
                                 rows={10}
                                 className="contact__form-input"
-                                placeholder="Provide some project details..."></textarea>
+                                placeholder="Provide some project details..."
+                            ></textarea>
                         </div>
 
-                        <button
-                            type="submit" // Specify the button type as 'submit'
-                            className="button button--flex">
+                        <button type="submit" className="button button--flex">
                             Send Message{" "}
                             <HiOutlineArrowSmRight className="button__icon" />
                         </button>
                     </form>
                 </div>
             </div>
+
         </section>
-    )
-}
+    );
+};
+
